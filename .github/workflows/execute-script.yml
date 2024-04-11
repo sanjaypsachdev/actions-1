@@ -3,7 +3,7 @@ name: Execute a script on push
 on: push
 
 jobs:
-    ascii_job:
+    execute_script_job:
         runs-on: ubuntu-latest
 
         steps:
