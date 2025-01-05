@@ -4,7 +4,7 @@ on: push
 
 jobs:
     build_job_1:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-24.04
 
         steps:
         - name: Install cowsay Package
@@ -14,18 +14,18 @@ jobs:
           run: cowsay -f dragon "Run for cover, I am a DRAGON.....RAWR" >> dragon.txt
 
         - name: Upload Dragon text file
-          uses: actions/upload-artifact@v3
+          uses: actions/upload-artifact@v4
           with:
             name: dragon-text-file
             path: dragon.txt
 
     test_job_2:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-24.04
         needs: build_job_1
 
         steps:
         - name: Download Dragon text file
-          uses: actions/download-artifact@v3
+          uses: actions/download-artifact@v4
           with:
             name: dragon-text-file
 
@@ -33,14 +33,14 @@ jobs:
           run: grep -i "dragon" dragon.txt
 
     deploy_job3:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-24.04
         needs: 
           - build_job_1
           - test_job_2
 
         steps:
         - name: Download Dragon text file
-          uses: actions/download-artifact@v3
+          uses: actions/download-artifact@v4
           with:
             name: dragon-text-file
 
