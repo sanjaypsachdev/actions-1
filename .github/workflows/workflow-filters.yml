@@ -1,0 +1,22 @@
+name: Workflow Filters
+
+on:
+    push:
+        branches:
+            - main
+            - '!feature/*'
+    pull_request:
+        branches:
+            - main
+        types: [opened, closed]
+        paths-ignore:
+            - 'README.md'
+#    schedule:
+#        - cron: '*/59 * * * *'
+    workflow_dispatch:
+
+jobs:
+    hello:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Triggered by ${{ github.event_name }}"
